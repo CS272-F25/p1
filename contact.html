@@ -13,7 +13,7 @@
   <script src="assets/js/global.js"></script>
 
   <!-- PAGE-SPECIFIC JS -->
-  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/contact-form.js" defer></script>
 </head>
 
 <body class="bg-light">
@@ -58,18 +58,32 @@
         <div class="mb-3">
           <label for="name" class="form-label">Your Name</label>
           <input
+                  type="text"
                   class="form-control"
                   id="name"
                   placeholder="Enter your name"
+                  required
           />
         </div>
 
         <div class="mb-3">
           <label for="email" class="form-label">Email Address</label>
           <input
+                  type="email"
                   class="form-control"
                   id="email"
                   placeholder="your@email.com"
+                  required
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number (Optional)</label>
+          <input
+                  type="tel"
+                  class="form-control"
+                  id="phone"
+                  placeholder="(123) 456-7890"
           />
         </div>
 
@@ -79,11 +93,12 @@
                   class="form-control"
                   id="message"
                   rows="4"
-          >
-          </textarea>
+                  placeholder="Enter your message"
+                  required
+          ></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary w-100" onclick="submitForm()">
+        <button type="submit" class="btn btn-primary w-100">
           Send Message
         </button>
 
