@@ -26,11 +26,7 @@ function toggleFavorite(buttonElement, recipe) {
 
     if (index === -1) {
         // add
-        user.favoriteRecipes.push({
-            id: recipe.id,
-            name: recipe.name,
-            thumb: recipe.thumb
-        });
+        user.favoriteRecipes.push(recipe);
         buttonElement.textContent = "Remove from Favorites";
         buttonElement.classList.replace("btn-primary", "btn-danger");
     } else {

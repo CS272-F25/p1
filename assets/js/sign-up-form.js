@@ -3,6 +3,23 @@ document.getElementById("signup-form").addEventListener("submit", async (event) 
 
     let username = document.getElementById("username").value.trim();
     let password = document.getElementById("password").value.trim();
+    const statusArea = document.getElementById("signup-status-area");
+
+    function setStatus(message, type = "info") {
+        clearStatus()
+
+        const alert = document.createElement("div");
+        alert.classList.add("alert", `alert-${type}`);
+        alert.setAttribute("role", "alert");
+        alert.textContent = message;
+        statusArea.appendChild(alert);
+    }
+
+    function clearStatus() {
+        while (statusArea.firstChild) {
+            statusArea.removeChild(statusArea.firstChild);
+        }
+    }
 
     // Perform any validation or processing of form data here
     function validateUsername(input) {
@@ -21,17 +38,20 @@ document.getElementById("signup-form").addEventListener("submit", async (event) 
     }
 
     function validatePassword(input) {
-        if (!input || input.length < 1) {
-            return "Password must be at least 1 character";
+        if (!input || input.length < 6) {
+            return "Password must be at least 6 characters";
         }
 
         return null
     }
 
+    clearStatus()
+
     // validate username
     let validationErrMsg = validateUsername(username)
     if (validationErrMsg) {
         alert(validationErrMsg)
+        setStatus(validationErrMsg, "danger")
         return;
     }
 
@@ -39,6 +59,7 @@ document.getElementById("signup-form").addEventListener("submit", async (event) 
     validationErrMsg = validatePassword(password)
     if (validationErrMsg) {
         alert(validationErrMsg)
+        setStatus(validationErrMsg, "danger")
         return;
     }
 
@@ -51,4 +72,5 @@ document.getElementById("signup-form").addEventListener("submit", async (event) 
     alert("Successfully signed up!");
     window.location.href = "index.html";
     event.target.reset();
+    clearStatus()
 });
