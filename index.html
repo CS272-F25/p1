@@ -15,6 +15,8 @@
         <!-- PAGE SPECIFIC CSS -->
         <link href="assets/css/index.css" rel="stylesheet"/>
         <script src="assets/js/index.js" defer></script>
+        <script src="assets/js/recipe.js" defer></script>
+        <script src="assets/js/favorite-recipe.js" defer></script>
     </head>
 
     <body class="bg-light">
@@ -99,39 +101,20 @@
     </section>
 
     <!-- FEATURED RECIPES -->
-    <section class="container pb-5">
+    <section class="container pb-5" aria-label="Featured recipes">
         <h2 class="mb-4">Featured Recipes</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="./assets/img/sample1.jpg" class="card-img-top" alt="Recipe">
-                    <div class="card-body">
-                        <h5 class="card-title">Sample Dish 1</h5>
-                        <p class="card-text">Sample Text</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col">
-                <div class="card h-100">
-                    <img src="./assets/img/sample2.jpg" class="card-img-top" alt="Recipe">
-                    <div class="card-body">
-                        <h5 class="card-title">Sample Dish 2</h5>
-                        <p class="card-text">Sample Text</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Error Status Area -->
+        <div id="featured-recipes-error" class="mb-3" aria-live="polite"></div>
 
-            <div class="col">
-                <div class="card h-100">
-                    <img src="./assets/img/sample3.jpg" class="card-img-top" alt="Recipe">
-                    <div class="card-body">
-                        <h5 class="card-title">Sample Dish 3</h5>
-                        <p class="card-text">Sample Text</p>
-                    </div>
-                </div>
-            </div>
+        <!-- Loading Spinner -->
+        <div id="featured-recipes-loading" class="text-center my-4 d-none" aria-hidden="true">
+            <div class="spinner-border" role="status" aria-label="Loading featured recipes"></div>
+            <p class="mt-2 text-muted mb-0">Loading recipes...</p>
         </div>
+
+        <!-- Recipes Grid        -->
+        <div id="featured-recipes" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"></div>
     </section>
 
     <!-- Bootstrap JS -->
