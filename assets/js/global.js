@@ -46,6 +46,7 @@ function saveUsers(usersObj) {
 }
 
 // AUTH
+
 // Returns the currently signed-in user object
 // { username, password, favoriteRecipes } OR null if none signed in or user missing
 function getCurrentUser() {

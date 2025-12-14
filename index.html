@@ -14,6 +14,7 @@
 
         <!-- PAGE SPECIFIC CSS -->
         <link href="assets/css/index.css" rel="stylesheet"/>
+        <script src="assets/js/index.js" defer></script>
     </head>
 
     <body class="bg-light">
@@ -78,7 +79,7 @@
         </div>
     </header>
 
-    <!-- TODO: SEARCH AREA -->
+    <!-- SEARCH RECIPES INPUT -->
     <section class="container pb-5">
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
@@ -89,6 +90,7 @@
                             id="search-input"
                             class="form-control"
                             placeholder="Search for a recipe..."
+                            required
                     />
                     <button class="btn btn-primary" type="submit">Search</button>
                 </form>
@@ -96,7 +98,7 @@
         </div>
     </section>
 
-    <!-- TODO: FEATURED RECIPES -->
+    <!-- FEATURED RECIPES -->
     <section class="container pb-5">
         <h2 class="mb-4">Featured Recipes</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
