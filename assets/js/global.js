@@ -46,11 +46,8 @@ function saveUsers(usersObj) {
 }
 
 // AUTH
-
-/**
- * Returns the currently signed-in user object:
- * { username, password, favoriteRecipes } OR null if none signed in or user missing.
- */
+// Returns the currently signed-in user object
+// { username, password, favoriteRecipes } OR null if none signed in or user missing
 function getCurrentUser() {
     const username = localStorage.getItem(CURRENT_USER_KEY);
     if (!username) return null;
