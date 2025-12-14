@@ -81,12 +81,7 @@ function createRecipeComponent(recipe) {
     actionsElement.appendChild(viewDetailsBtnElement);
 
     // Fav Btn
-    const favBtnElement = document.createElement("button");
-    favBtnElement.className = "btn btn-primary";
-    favBtnElement.type = "button";
-    favBtnElement.textContent = "Save to Favorites";
-    favBtnElement.onclick = () => toggleFavorite(recipe)
-    actionsElement.appendChild(favBtnElement);
+    actionsElement.appendChild(createFavoriteButtonComponent(recipe));
 
     return colElement;
 }

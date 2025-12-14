@@ -61,6 +61,7 @@ function getCurrentUser() {
 
 function signOut() {
     localStorage.removeItem(CURRENT_USER_KEY);
+    alert("Successfully signed out!")
 }
 
 function updateAuthNav() {
@@ -79,7 +80,7 @@ function updateAuthNav() {
 
         signOutBtn.addEventListener("click", () => {
             signOut();
-            window.location.href = "index.html";
+            window.location.reload();
         });
     } else {
         signInLink.classList.remove("d-none");
