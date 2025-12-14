@@ -18,8 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("recipe-search-input").value = initialQ.trim()
         // search with the query
         handleSearch(initialQ.trim());
-    } else {
-        setStatus("Search for a recipe to see results here", "info");
     }
 })
 
@@ -36,6 +34,57 @@ function setSearchQuery(newQuery) {
 
 function handleSearch(searchQuery) {
     console.log("handleSearch", searchQuery)
+
+    function setLoading(isLoading) {
+        const loadingElement = document.getElementById("loading");
+        loadingElement.classList.toggle("d-none", !isLoading);
+        loadingElement.setAttribute("aria-hidden", String(!isLoading));
+    }
+
+    function setStatus(message, type = "info") {
+        clearStatus()
+
+        const statusArea = document.getElementById("status-area");
+        const alert = document.createElement("div");
+        alert.classList.add("alert", `alert-${type}`);
+        alert.setAttribute("role", "alert");
+        alert.textContent = message;
+
+        statusArea.appendChild(alert);
+    }
+
+    function clearStatus() {
+        const statusArea = document.getElementById("status-area");
+        while (statusArea.firstChild) {
+            statusArea.removeChild(statusArea.firstChild);
+        }
+    }
+
+    function displayRecipes(recipes) {
+        // clear results just in case
+        clearRecipes()
+
+        // set recipes count
+        setRecipesCount(recipes.length)
+
+        // render recipe components
+        const resultsElement = document.getElementById("results");
+        for (let recipe of recipes) {
+            resultsElement.appendChild(createRecipeComponent(recipe))
+        }
+    }
+
+
+    function clearRecipes() {
+        const resultsElement = document.getElementById("results");
+        resultsElement.innerHTML = ""
+        setRecipesCount(0)
+    }
+
+    function setRecipesCount(count) {
+        const element = document.getElementById("results-count");
+        element.textContent = `${count} result${count === 1 ? "" : "s"}`;
+    }
 
     // show loading spinner and clear the status area + results list
     setLoading(true)
@@ -74,56 +123,4 @@ function handleSearch(searchQuery) {
             // always hide loading spinner once done
             setLoading(false)
         })
-}
-
-function setLoading(isLoading) {
-    const loadingElement = document.getElementById("loading");
-    loadingElement.classList.toggle("d-none", !isLoading);
-    loadingElement.setAttribute("aria-hidden", String(!isLoading));
-}
-
-
-function setStatus(message, type = "info") {
-    clearStatus()
-
-    const statusArea = document.getElementById("status-area");
-    const alert = document.createElement("div");
-    alert.classList.add("alert", `alert-${type}`);
-    alert.setAttribute("role", "alert");
-    alert.textContent = message;
-
-    statusArea.appendChild(alert);
-}
-
-function clearStatus() {
-    const statusArea = document.getElementById("status-area");
-    while (statusArea.firstChild) {
-        statusArea.removeChild(statusArea.firstChild);
-    }
-}
-
-function displayRecipes(recipes) {
-    // clear results just in case
-    clearRecipes()
-
-    // set recipes count
-    setRecipesCount(recipes.length)
-
-    // render recipe components
-    const resultsElement = document.getElementById("results");
-    for (let recipe of recipes) {
-        resultsElement.appendChild(createRecipeComponent(recipe))
-    }
-}
-
-
-function clearRecipes() {
-    const resultsElement = document.getElementById("results");
-    resultsElement.innerHTML = ""
-    setRecipesCount(0)
-}
-
-function setRecipesCount(count) {
-    const element = document.getElementById("results-count");
-    element.textContent = `${count} result${count === 1 ? "" : "s"}`;
 }

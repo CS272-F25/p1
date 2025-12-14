@@ -20,7 +20,6 @@ document.getElementById("signin-form").addEventListener("submit", async (event) 
         return null
     }
 
-
     // validate username and password
     let validationErrMsg = validate()
     if (validationErrMsg) {
@@ -28,18 +27,10 @@ document.getElementById("signin-form").addEventListener("submit", async (event) 
         return;
     }
 
-    const data = {
-        username,
-        password
-    }
+    // set current user name in local storage
+    localStorage.setItem(CURRENT_USER_KEY, username);
 
-    signIn(data.username, data.password)
     alert("Successfully signed in!");
     window.location.href = "index.html";
     event.target.reset();
 });
-
-
-function signIn(username, password) {
-    localStorage.setItem(CURRENT_USER_KEY, username);
-}

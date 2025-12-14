@@ -42,21 +42,13 @@ document.getElementById("signup-form").addEventListener("submit", async (event) 
         return;
     }
 
-    const data = {
-        username,
-        password
-    }
-
-    signUp(data.username, data.password)
-    alert("Successfully signed up!");
-    window.location.href = "index.html";
-    event.target.reset();
-});
-
-function signUp(username, password) {
-    // Note: we assume username and password are validated beforehand
+    // append new user to users list in local storage
     const users = getUsers();
     users[username] = { password, favoriteRecipes: [] };
     saveUsers(users);
     localStorage.setItem(CURRENT_USER_KEY, username);
-}
+
+    alert("Successfully signed up!");
+    window.location.href = "index.html";
+    event.target.reset();
+});
